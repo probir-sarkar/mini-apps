@@ -1,9 +1,10 @@
 "use client";
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { usePincodeStore } from "./pincode-store";
+import { Map } from "lucide-react";
 
 const PinCodeTable = () => {
-  const { postOffices } = usePincodeStore();
+  const { postOffices, setSelectedOffice } = usePincodeStore();
   return (
     <Table className="border rounded-md">
       <TableCaption>Indian Pincode</TableCaption>
@@ -15,6 +16,7 @@ const PinCodeTable = () => {
           <TableHead>StateName</TableHead>
           <TableHead>Latitude</TableHead>
           <TableHead>Longitude</TableHead>
+          <TableHead>Map</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
@@ -26,6 +28,9 @@ const PinCodeTable = () => {
             <TableCell>{office.StateName}</TableCell>
             <TableCell>{office.Latitude}</TableCell>
             <TableCell>{office.Longitude}</TableCell>
+            <TableCell>
+              <Map className="cursor-pointer" onClick={() => setSelectedOffice(office)} />
+            </TableCell>
           </TableRow>
         ))}
       </TableBody>
