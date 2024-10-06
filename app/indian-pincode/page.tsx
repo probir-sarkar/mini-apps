@@ -4,11 +4,11 @@ import PinCodeTable from "@/components/indian-pincode/pincode-table";
 
 const IndianPinCodePage = () => {
   return (
-    <main>
-      <div className="my-8 max-w-lg mx-auto">
+    <main className="container mx-auto px-4 py-4 grid gap-4 grid-cols-12">
+      <div className="col-span-4">
         <PincodeForm />
       </div>
-      <div className="my-8 max-w-4xl mx-auto">
+      <div className="col-span-8 space-y-4">
         <PinCodeTable />
         <PincodeMap />
       </div>
