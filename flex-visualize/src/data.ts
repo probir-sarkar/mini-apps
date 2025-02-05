@@ -41,3 +41,19 @@ export const sections: Section[] = [
   { title: "Flex Shrink", property: "flexShrink", options: ["0", "1", "2", "3"], type: "radio" },
   { title: "Flex Basis", property: "flexBasis", options: ["auto", "50px", "100px", "25%", "50%"], type: "radio" }
 ];
+
+export const easingMethods = [
+  "linear",
+  "easeIn",
+  "easeOut",
+  "easeInOut",
+  "backIn",
+  "backOut",
+  "backInOut",
+  "circIn",
+  "circOut",
+  "circInOut",
+  "anticipate"
+];
+
+export type EasingMethod = (typeof easingMethods)[number];
