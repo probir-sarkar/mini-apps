@@ -1,4 +1,4 @@
-import _ from "lodash";
+import { chunk } from ".";
 
 const checkForWin = (board) => {
   // Check for horizontal wins
@@ -117,12 +117,12 @@ const getDifferent = (Array1, Array2) => {
 };
 
 export const aiMove = (boardInput, level = 3) => {
-  const reqBoard = _.split(boardInput, "");
+  const reqBoard = boardInput.split("");
   if (reqBoard.length !== 9) {
     return;
   }
 
-  const board = _.chunk(reqBoard, 3);
+  const board = chunk(reqBoard, 3);
   let AIMove;
   if (level === 1) {
     AIMove = randomMove(board);
@@ -136,7 +136,7 @@ export const aiMove = (boardInput, level = 3) => {
   } else {
     AIMove = getAIMove(board);
   }
-  AIMove = _.join(_.flatten(AIMove), "");
+  AIMove = AIMove.flat().join("");
 
   return getDifferent(reqBoard, AIMove);
 };

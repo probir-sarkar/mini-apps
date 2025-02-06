@@ -10,7 +10,6 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "lodash": "^4.17.21",
     "motion": "*",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
