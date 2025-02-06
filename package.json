@@ -4,16 +4,21 @@
   "scripts": {
     "build": "turbo build",
     "dev": "turbo dev",
-    "lint": "turbo lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+    "dev:flex": "turbo dev --filter=flex-visualize",
+    "dev:tic": "turbo dev --filter=tic-tac-toe",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "lint": "turbo lint"
+  },
+  "dependencies": {
+    "motion": "^12.0.6"
   },
   "devDependencies": {
+    "@tailwindcss/vite": "^4.0.3",
     "prettier": "^3.4.2",
+    "tailwindcss": "^4.0.3",
     "turbo": "^2.4.0",
     "typescript": "5.7.3",
-    "vite": "^6.1.0",
-    "tailwindcss": "^4.0.3",
-    "@tailwindcss/vite": "^4.0.3"
+    "vite": "^6.1.0"
   },
   "packageManager": "pnpm@9.0.0",
   "engines": {
