@@ -1,13 +1,31 @@
 import { StrictMode } from "react";
-import { createRoot } from "react-dom/client";
-import PlayersProvider from "./contexts/players.context";
+import ReactDOM from "react-dom/client";
+import { RouterProvider, createRouter } from "@tanstack/react-router";
 import "./index.scss";
-import App from "./App";
 
-createRoot(document.getElementById("root")!).render(
-  <StrictMode>
-    <PlayersProvider>
-      <App />
-    </PlayersProvider>{" "}
-  </StrictMode>
-);
+// Import the generated route tree
+import { routeTree } from "./routeTree.gen";
+import PlayersProvider from "./contexts/players.context";
+
+// Create a new router instance
+const router = createRouter({ routeTree });
+
+// Register the router instance for type safety
+declare module "@tanstack/react-router" {
+  interface Register {
+    router: typeof router;
+  }
+}
+
+// Render the app
+const rootElement = document.getElementById("root")!;
+if (!rootElement.innerHTML) {
+  const root = ReactDOM.createRoot(rootElement);
+  root.render(
+    <StrictMode>
+      <PlayersProvider>
+        <RouterProvider router={router} />
+      </PlayersProvider>
+    </StrictMode>
+  );
+}
