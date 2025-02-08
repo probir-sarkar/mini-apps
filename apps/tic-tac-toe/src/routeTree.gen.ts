@@ -12,12 +12,26 @@
 
 import { Route as rootRoute } from './routes/__root'
 import { Route as IndexImport } from './routes/index'
+import { Route as MultiplayerIndexImport } from './routes/multiplayer/index'
+import { Route as MultiplayerRoomIdImport } from './routes/multiplayer/$roomId'
 
 // Create/Update Routes
 
 const IndexRoute = IndexImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const MultiplayerIndexRoute = MultiplayerIndexImport.update({
+  id: '/multiplayer/',
+  path: '/multiplayer/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const MultiplayerRoomIdRoute = MultiplayerRoomIdImport.update({
+  id: '/multiplayer/$roomId',
+  path: '/multiplayer/$roomId',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -32,6 +46,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexImport
       parentRoute: typeof rootRoute
     }
+    '/multiplayer/$roomId': {
+      id: '/multiplayer/$roomId'
+      path: '/multiplayer/$roomId'
+      fullPath: '/multiplayer/$roomId'
+      preLoaderRoute: typeof MultiplayerRoomIdImport
+      parentRoute: typeof rootRoute
+    }
+    '/multiplayer/': {
+      id: '/multiplayer/'
+      path: '/multiplayer'
+      fullPath: '/multiplayer'
+      preLoaderRoute: typeof MultiplayerIndexImport
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
@@ -39,32 +67,42 @@ declare module '@tanstack/react-router' {
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/multiplayer/$roomId': typeof MultiplayerRoomIdRoute
+  '/multiplayer': typeof MultiplayerIndexRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/multiplayer/$roomId': typeof MultiplayerRoomIdRoute
+  '/multiplayer': typeof MultiplayerIndexRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
+  '/multiplayer/$roomId': typeof MultiplayerRoomIdRoute
+  '/multiplayer/': typeof MultiplayerIndexRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/multiplayer/$roomId' | '/multiplayer'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/multiplayer/$roomId' | '/multiplayer'
+  id: '__root__' | '/' | '/multiplayer/$roomId' | '/multiplayer/'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  MultiplayerRoomIdRoute: typeof MultiplayerRoomIdRoute
+  MultiplayerIndexRoute: typeof MultiplayerIndexRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  MultiplayerRoomIdRoute: MultiplayerRoomIdRoute,
+  MultiplayerIndexRoute: MultiplayerIndexRoute,
 }
 
 export const routeTree = rootRoute
@@ -77,11 +115,19 @@ export const routeTree = rootRoute
     "__root__": {
       "filePath": "__root.tsx",
       "children": [
-        "/"
+        "/",
+        "/multiplayer/$roomId",
+        "/multiplayer/"
       ]
     },
     "/": {
       "filePath": "index.tsx"
+    },
+    "/multiplayer/$roomId": {
+      "filePath": "multiplayer/$roomId.tsx"
+    },
+    "/multiplayer/": {
+      "filePath": "multiplayer/index.tsx"
     }
   }
 }

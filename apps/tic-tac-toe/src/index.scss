@@ -1,4 +1,4 @@
-// @import "tailwindcss";
+
 
 // light mode
 @media (prefers-color-scheme: dark) {
@@ -24,7 +24,10 @@ body {
   min-height: 100vh;
   background-color: var(--color-primary);
   color: var(--color-secondary);
-  font-family: $font;
+
+  .App {
+    font-family: $font;
+  }
 
   h1 {
     font-size: 3.2em;
