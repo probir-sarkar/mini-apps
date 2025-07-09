@@ -2,10 +2,10 @@ import { useFlexContext } from "../context-provider";
 import { motion } from "motion/react";
 
 const FlexSection = () => {
-  const { flexStyles, easing } = useFlexContext();
+  const { flexStyles, easing, boxes, selectedshape } = useFlexContext();
   return (
-    <div className="flex h-full" style={{ ...flexStyles }}>
-      {new Array(5).fill(0).map((_, i) => {
+    <div className="flex h-full w-full" style={{ ...flexStyles }}>
+      {new Array(boxes).fill(0).map((_, i) => {
         return (
           <motion.div
             layout
@@ -14,7 +14,8 @@ const FlexSection = () => {
             transition={{ ease: easing }}
             whileHover={{ scale: 1.1 }}
             key={i}
-            className="w-20 h-20 bg-primary text-secondary flex items-center justify-center"
+            className="w-20 bg-primary text-secondary flex items-center justify-center"
+            style={{ ...selectedshape.value }}
           >
             {i + 1}
           </motion.div>
