@@ -24,7 +24,7 @@ const FlexProvider = ({ children }: { children: React.ReactNode }) => {
     order: "0",
     flexGrow: "0",
     flexShrink: "1",
-    flexBasis: "auto"
+    flexBasis: "auto",
   });
   const [easing, setEasing] = useState<EasingMethod>("linear");
 
